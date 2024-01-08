@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 import { handleSaveError, addUpdateSettings } from "./hooks.js";
 import Joi from 'joi';
 
-const phoneRegexp =  /^\(d{3}\) \d{3}-\d{4}$/;
+const phoneRegexp =  /^\(\d{3}\) \d{3}-\d{4}$/;
 
 const contactSchema = new Schema({
     name: {
@@ -22,6 +22,11 @@ const contactSchema = new Schema({
         type: Boolean,
         default:false
     },
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "user",
+        required: true,
+    }
 }, 
 {versionKey: false, timestamps: true});
 
